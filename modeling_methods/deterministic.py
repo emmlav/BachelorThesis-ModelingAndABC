@@ -1,7 +1,5 @@
-from src.load_parameters import load_parameters 
 import numpy as np 
-import matplotlib.pyplot as plt 
-import time
+
 
 def deterministic_algorithm(u0, dx, dt, T, L, D, r, carrying_capacity, times_to_return=None):
     """
@@ -11,7 +9,7 @@ def deterministic_algorithm(u0, dx, dt, T, L, D, r, carrying_capacity, times_to_
     # stability check 
     alpha = D * dt / dx ** 2
     if alpha > 1/2:
-        print("Stability violated")
+        raise ValueError("Stability violated")
     
     Nt = int(T / dt)
     Nx = int(L / dx)

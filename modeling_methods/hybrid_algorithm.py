@@ -1,5 +1,4 @@
-from src.Gillepsie import state_update, plot_gillespie
-from src.load_parameters import load_parameters
+from gillepsie import state_update
 import numpy as np
 
 def probabilistic_round(value):
@@ -134,24 +133,3 @@ def hybrid_algorithm( D, T, L, dx, dt, birth_prob,  observed_times,carrying_capa
             break 
 
     return np.array(result_array), np.array(time_result)
-
-
-"""
-
-#params = load_parameters("PARAMETERS.txt")
-params = load_parameters("ORIGINAL_PARAMETERS.txt")
-# Acceso a variables
-L = params['L']
-dx = params['dx']
-dt = params['dt']
-T = params['T']
-Number_simulations = params['Number_simulations']
-D = params['D']
-r = params['r']
-carrying_capacity = params['carrying_capacity']
-proportion_treshold = params['proportion_treshold']
-observed_times = np.linspace(0, T-1, 10)
-#hybrid_result, time_result = hybrid_algorithm(D,T,L,dx,dt,r,observed_times, carrying_capacity, carrying_capacity*proportion_treshold)
-
-#plot_gillespie(hybrid_result, time_result, observed_times)
-"""

@@ -1,6 +1,5 @@
 import numpy as np
-from src.load_parameters import load_parameters 
-import matplotlib.pyplot as plt
+
 
 # State update function for the Gillespie algorithm
 def state_update(current_state, state_number, reaction,Nx):
@@ -101,31 +100,3 @@ def gillepsie_algorithm(u0, T, reaction_and_diffusions_coefficients, Nx, times_t
         # Avoid negative indices
         indices[indices < 0] = 0
         return np.array(state_result[indices]), np.array(times_to_return)
-
-def plot_gillespie(state_result, time_result, dx, plot_times=None):
-    """
-    Plots snapshots of the Gillespie simulation at specified time points.
-    """
-    Nx = state_result.shape[1]
-    x = np.arange(Nx) * dx
-    
-    if plot_times is None:
-        # Select 10 equally spaced time points across the time span
-        plot_times = np.linspace(time_result[0], time_result[-1], 10)
-    
-    plt.figure(figsize=(10, 6))
-    
-    for t_plot in plot_times:
-        # Find index closest to requested time
-        idx = np.searchsorted(time_result, t_plot, side='left')
-        if idx >= len(time_result):
-            idx = len(time_result) - 1
-        
-        plt.plot(x, state_result[idx], label=f't={time_result[idx]:.2f}')
-    
-    plt.xlabel('Position')
-    plt.ylabel('Population')
-    plt.title('Gillespie simulation snapshots')
-    plt.legend()
-    plt.grid(True)
-    plt.show()

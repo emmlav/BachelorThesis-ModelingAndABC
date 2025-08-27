@@ -3,7 +3,7 @@ import time
 import heapq
 from typing import List, Tuple, Optional
 import numpy as np
-from utils import push_candidate, evaluate_candidate
+from utils import apply_algorithm, compute_euclidean_distance
 
 Params = Tuple[float, float]  # (birth_rate, death_rate)
 
